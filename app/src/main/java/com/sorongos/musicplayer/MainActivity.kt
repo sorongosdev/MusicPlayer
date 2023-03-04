@@ -1,5 +1,6 @@
 package com.sorongos.musicplayer
 
+import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,26 +19,26 @@ class MainActivity : AppCompatActivity() {
         binding.stopButton.setOnClickListener { mediaPlayerStop() }
     }
 
-    private fun mediaPlayerStop() {
-        mediaPlayer?.stop()
-        //메모리 해제
-        mediaPlayer?.release()
-        mediaPlayer = null
+    private fun mediaPlayerPlay() {
+        val intent = Intent(this, MediaPlayerService::class.java)
+            //string으로 action을 넣음
+            .apply { action = MEDIA_PLAYER_PLAY }
+        startService(intent)
+    }
 
+    private fun mediaPlayerStop() {
+        val intent = Intent(this, MediaPlayerService::class.java)
+            //string으로 action을 넣음
+            .apply { action = MEDIA_PLAYER_STOP }
+        startService(intent)
     }
 
     private fun mediaPlayerPause() {
-        mediaPlayer?.pause()
-
+        val intent = Intent(this, MediaPlayerService::class.java)
+            //string으로 action을 넣음
+            .apply { action = MEDIA_PLAYER_PAUSE }
+        startService(intent)
     }
 
-    private fun mediaPlayerPlay() {
-        if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.walkaway).apply{
-                //반복 재생
-                isLooping = true
-            }
-        }
-        mediaPlayer?.start()
-    }
+
 }

@@ -1,9 +1,11 @@
 package com.sorongos.musicplayer
 
+import android.Manifest
 import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
 import com.sorongos.musicplayer.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding.playButton.setOnClickListener { mediaPlayerPlay() }
         binding.pauseButton.setOnClickListener { mediaPlayerPause() }
         binding.stopButton.setOnClickListener { mediaPlayerStop() }
+        requestPostNotification()
     }
 
     private fun mediaPlayerPlay() {
@@ -39,6 +42,12 @@ class MainActivity : AppCompatActivity() {
             .apply { action = MEDIA_PLAYER_PAUSE }
         startService(intent)
     }
-
+    private fun requestPostNotification() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+            100
+        )
+    }
 
 }

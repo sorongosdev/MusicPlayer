@@ -14,10 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MusicPlayer"
         tools:targetApi="33">
+        <receiver
+            android:name=".LowBatteryReceiver"
+            android:enabled="true"
+            android:exported="true"/>
+
         <service
             android:name=".MediaPlayerService"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
 
         <activity
             android:name=".MainActivity"

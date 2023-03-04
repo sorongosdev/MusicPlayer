@@ -5,6 +5,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.sorongos.musicplayer.databinding.ActivityMainBinding
 
@@ -49,5 +50,4 @@ class MainActivity : AppCompatActivity() {
             100
         )
     }
-
 }
